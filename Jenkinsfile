@@ -1,23 +1,23 @@
-
 pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Check Node') {
+            steps {
+                bat 'node -v'
+                bat 'npm -v'
+            }
+        }
+
+        stage('Install') {
             steps {
                 bat 'npm install'
             }
         }
 
-        stage('Test') {
+        stage('Build') {
             steps {
                 bat 'npm run build'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                bat 'npm run dev'
             }
         }
     }
